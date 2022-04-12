@@ -1,0 +1,65 @@
+﻿@model IEnumerable<VaccineChecker.Models.student>
+
+@{
+    ViewData["Title"] = "studentsList";
+}
+
+<h1>studentsList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.faculty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vaccined)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.certificateImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.personalImage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.faculty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vaccined)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.certificateImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.personalImage)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NationalID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NationalID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NationalID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

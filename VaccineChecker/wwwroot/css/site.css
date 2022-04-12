@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.login-form {
+margin:auto;
+margin-top:15vh;
+}
+#data p {
+font-size:50px;
+}

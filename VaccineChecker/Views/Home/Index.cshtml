@@ -1,8 +1,29 @@
-﻿@{
+﻿@model user
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to vaccine checker</h1>        
 </div>
+
+<div class="col-lg-4 col-sm-2 login-form ">
+<form asp-action="logincheck" asp-controller="home">
+        @if (!ViewBag.isok) { 
+         <p class="text-danger text-center" id="logininfo">Incorrect email or password</p>
+        }       
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <input  asp-for="username" id="form2Example1" class="form-control" onkeyup="cleartext()"/>
+    <label class="form-label" for="form2Example1">User name</label>
+  </div>
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <input type="password" asp-for="password" id="form2Example2" class="form-control" onkeyup="cleartext()"/>
+    <label class="form-label" for="form2Example2">Password</label>
+  </div>
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-left:45%">Log in</button>
+</form>
+</div>
+
