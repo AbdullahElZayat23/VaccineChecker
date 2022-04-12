@@ -1,36 +1,41 @@
 ﻿@model IEnumerable<VaccineChecker.Models.student>
 
 @{
-    ViewData["Title"] = "studentsList";
+    ViewData["Title"] = "Students list";
 }
 
-<h1>studentsList</h1>
+<h1>Students List</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="CreateStudent" class="btn btn-primary" asp-controller="admin">Create New</a>
 </p>
+
+<p>
+    <a asp-action="index" class="btn btn-primary" asp-controller="admin">Back to dashboard</a>
+</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.name)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.email)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.faculty)
+                Faculty
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.vaccined)
+                vaccinated
             </th>
-            <th>
+          @*  <th>
                 @Html.DisplayNameFor(model => model.certificateImage)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.personalImage)
-            </th>
-            <th></th>
+            </th>*@
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -48,16 +53,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.vaccined)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.certificateImage)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.personalImage)
-            </td>
+            </td>*@
             <td>
-                <a asp-action="Edit" asp-route-id="@item.NationalID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NationalID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NationalID">Delete</a>
+                <a asp-action="editstudent" asp-route-id="@item.NationalID">Edit</a> |
+               @* <a asp-action="Details" asp-route-id="@item.NationalID">Details</a> |*@
+                <a asp-action="showdelete" asp-route-id="@item.NationalID">Delete</a>
             </td>
         </tr>
 }

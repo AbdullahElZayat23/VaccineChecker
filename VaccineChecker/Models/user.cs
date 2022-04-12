@@ -7,14 +7,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace VaccineChecker.Models
-{
+{    
     public partial class user
     {
+        
         [Key]
-        [StringLength(50)]
-        public string username { get; set; }
+       
+        [Required]
         [StringLength(50,MinimumLength =8)]
-        public string password { get; set; }
+        public string username { get; set; }
+        [RegularExpression(pattern: @"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$", ErrorMessage = "Minimum eight characters, at least one letter, one number and one special character.")]
+        [StringLength(50,MinimumLength =8)]
+        [Required]
+        public string password { get; set; }        
+        [Required]
         public bool? isadmin { get; set; }
     }
 }

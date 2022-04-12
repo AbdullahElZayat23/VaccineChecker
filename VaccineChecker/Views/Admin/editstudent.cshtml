@@ -1,0 +1,65 @@
+﻿@model VaccineChecker.Models.student
+
+<h4>Edit student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Saveeditstudent">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NationalID" value="@ViewBag.id" />
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control"/>
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" type="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="faculty" class="control-label"></label>
+                <select asp-for="faculty" class="form-control"> 
+                    <option selected disabled></option>
+                    <option>التجارة</option>
+                    <option>الهندسه</option>
+                    <option>علوم</option>
+                    <option>طب بشري</option>
+                    <option>صيدلة</option>
+                    <option>طب اسنان</option>                                        
+                </select>
+                <span asp-validation-for="faculty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vaccined" class="control-label"></label>
+                <select asp-for="vaccined" class="form-control"> 
+                    <option selected disabled></option>
+                    <option>True</option>
+                    <option>False</option>                                                        
+                </select>
+                <span asp-validation-for="vaccined" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="certificateImage" class="control-label"></label>
+                <input asp-for="certificateImage" class="form-control" />
+                <span asp-validation-for="certificateImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="personalImage" class="control-label"></label>
+                <input asp-for="personalImage" class="form-control" />
+                <span asp-validation-for="personalImage" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="showlist" >Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

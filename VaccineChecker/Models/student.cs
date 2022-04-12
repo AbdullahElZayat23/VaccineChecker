@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace VaccineChecker.Models
@@ -12,13 +13,22 @@ namespace VaccineChecker.Models
     public partial class student
     {
         [Key]
-        public int NationalID { get; set; }
-        [StringLength(150)]
+        [Required]
+        [MinLength(14,ErrorMessage ="The Min length must be 14 digits.")]
+        [MaxLength(14, ErrorMessage = "The Max length must be 14 digits.")]
+        [RegularExpression(pattern: @"^\d+$",ErrorMessage ="ID must be numbers only")]
+        [Remote(action: "checkNationalID", controller:"admin",ErrorMessage ="ID already exists.",HttpMethod ="POST")]
+        public string NationalID { get; set; }
+        [StringLength(150,MinimumLength =20,ErrorMessage ="Name must be at elast 20 charachters.")]
+        [Required]
         public string name { get; set; }
         [StringLength(200)]
+        [Required]
         public string email { get; set; }
         [StringLength(40)]
+        [Required]
         public string faculty { get; set; }
+        [Required]
         public bool? vaccined { get; set; }
         public byte[] certificateImage { get; set; }
         public byte[] personalImage { get; set; }

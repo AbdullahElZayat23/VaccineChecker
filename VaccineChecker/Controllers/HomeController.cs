@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using VaccineChecker.Models;
+using static VaccineChecker.Models.CurrentuserData;
 
 namespace VaccineChecker.Controllers
 {
+    
     public class HomeController : Controller
     {
+
+       
+
         VaccinecheckerContext db;
 
         private readonly ILogger<HomeController> _logger;
@@ -35,8 +40,14 @@ namespace VaccineChecker.Controllers
 
         public IActionResult LoginCheck(user usr) {
 
-            var result = db.users.Where(u=>u.username==usr.username && u.password==usr.password).ToList();
-            if (result.Count > 0) {
+            var Curuser = db.users.Where(u=>u.username==usr.username && u.password==usr.password).ToList();
+            if (Curuser.Count > 0) {
+                logged = true;
+                username = usr.username;
+                isadmin = false;
+                if ((bool)Curuser[0].isadmin) {
+                    isadmin = true;
+                }                
                 return RedirectToAction(actionName: "Index",controllerName:"admin");
             }
             ViewBag.isok = false;
