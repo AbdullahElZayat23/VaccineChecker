@@ -23,13 +23,15 @@ namespace VaccineChecker.Controllers
                     ViewBag.studentcount = result.Count;
                     ViewBag.vaccined = result.Count(s => s.vaccined == true);
                     ViewBag.notvaccined = result.Count(s => s.vaccined == false);
+                    ViewBag.percentage = (ViewBag.vaccined / (double)ViewBag.studentcount) * 100;
                 }
                 else
                 {
                     ViewBag.studentcount = 0;
                     ViewBag.vaccined = 0;
                     ViewBag.notvaccined = 0;
-                }
+                    ViewBag.percentage = 0;
+                }           
                 return View("dashboard");
             }
             else if (logged && isadmin == false)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using VaccineChecker.Models;
 using static VaccineChecker.Models.CurrentuserData;
@@ -61,7 +62,8 @@ namespace VaccineChecker.Controllers
                 {
                     logged = true;
                     username = usr.username;
-                    isadmin = false;
+                    isadmin = false;                  
+
                     if ((bool)Curuser[0].isadmin)
                     {
                         isadmin = true;

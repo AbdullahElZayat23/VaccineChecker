@@ -7,7 +7,6 @@
 @section  styles{
 <link rel="stylesheet" href="~/css/site.css">
 }
-
 <h4>Student controls</h4>
 <a class="btn btn-primary" asp-controller="admin" asp-action="CreateStudent">Add student</a>
 <a class="btn btn-primary m-2" asp-action="showlist" asp-controller="admin">Show all students</a>
@@ -25,5 +24,8 @@
  <span class="badge bg-primary">Number of students: @ViewBag.studentcount </span>
  <span class="badge bg-success">Number of vaccined students: @ViewBag.vaccined</span>
  <span class="badge bg-danger">Number of not vaccined students: @ViewBag.notvaccined </span> 
+ <span class="badge bg-success">Percentage of vaccined students: @ViewBag.percentage %</span>
+
+
 </div>
 
