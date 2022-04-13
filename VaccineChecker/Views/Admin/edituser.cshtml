@@ -1,18 +1,14 @@
 ﻿@model VaccineChecker.Models.user
 @{
- ViewData["Title"] = "Add user";
+ ViewData["Title"] = "Edit user";
 }
-<h4>Add user</h4>
+<h4>user</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="saveuser">
+        <form asp-action="edituserData">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="username" class="control-label"></label>
-                <input asp-for="username" class="form-control" />
-                <span asp-validation-for="username" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="username" />
             <div class="form-group">
                 <label asp-for="password" class="control-label"></label>
                 <input asp-for="password" class="form-control" />
@@ -28,11 +24,12 @@
                  <span asp-validation-for="isadmin" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary mt-2" />
+                <input type="submit" value="Save" class="btn btn-primary mt-2" />
             </div>
         </form>
     </div>
 </div>
+
 <div>
     <a asp-action="showusers">Back to List</a>
 </div>

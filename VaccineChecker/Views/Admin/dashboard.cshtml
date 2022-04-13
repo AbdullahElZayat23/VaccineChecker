@@ -9,10 +9,16 @@
 }
 <a class="btn btn-primary" asp-controller="admin" asp-action="CreateStudent">Add student</a>
 <a class="btn btn-primary m-2" asp-action="showlist" asp-controller="admin">Show all students</a>
+<a class="btn btn-primary" asp-action="Index" asp-controller="search">Search for student</a>
+
 <hr>
 <a class="btn btn-primary" asp-action="adduser" asp-controller=admin>Add user</a>
-<a class="btn btn-primary m-2">Show all users</a>
+<a class="btn btn-primary m-2" asp-action="showusers" asp-controller="admin">Show all users</a>
 <hr>
+
+
+
+
 <div id="data">
     <p>Database info</p>
  <span class="badge bg-primary">Number of students: @ViewBag.studentcount </span>

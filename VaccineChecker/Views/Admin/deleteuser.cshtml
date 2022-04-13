@@ -1,0 +1,49 @@
+﻿@model VaccineChecker.Models.user
+@{
+    ViewData["Title"] = "Delete user";
+}
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>user</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isadmin)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.username)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.password)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.isadmin)
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+    <form asp-action="deleteuserData" asp-route-id="@ViewBag.username">
+        <input type="hidden" asp-for="username" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="showusers">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<VaccineChecker.Models.user>
+@{
+ ViewData["Title"] = "Show user";
+}
+<p>
+    <a asp-action="adduser" class="btn-primary btn">Create New</a>
+</p>
+
+<p>
+    <a asp-action="index" class="btn-primary btn">Back to dashboard</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isadmin)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.password)
+                </td>
+
+                  <td>
+                    @Html.DisplayFor(modelItem => item.isadmin)
+                </td>
+
+
+                <td>
+                    <a asp-action="edituser" asp-route-id="@item.username">Edit</a> |
+                    <a asp-action="deleteuser" asp-route-id="@item.username">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

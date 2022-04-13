@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+ ViewData["Title"] = "Search for student";
+}
+@section styles{
+<script defer src="~/js/search.js"></script>
+}
+@using VaccineChecker.Models
+
+@if (CurrentuserData.isadmin)
+{
+    <a class="btn btn-primary" asp-action="index" asp-controller="admin">Back to dashboard</a>
+}
+
+<div class="input-group mt-5 col-lg-4 col-sm-2">    
+  <input type="search" class="form-control rounded searchtextName" placeholder="Search by Name | البحث بالاسم"  aria-label="Search" aria-describedby="search-addon" onkeyup="getdata(this.value,'name')" />
+ @* <button type="button" class="btn btn-outline-primary">search</button>*@
+</div>
+
+
+<div class="input-group mt-4 col-lg-4 col-sm-2">    
+  <input type="search" class="form-control searchtextEmail rounded" placeholder="Search by Email | البحث بالايميل الجامعي"  aria-label="Search" aria-describedby="search-addon" onkeyup="getdata(this.value,'email')" />
+ @* <button type="button" class="btn btn-outline-primary">search</button>*@
+</div>
+
+<div class="input-group mt-4 col-lg-4 col-sm-2">    
+  <input type="search" class="form-control searchtextID  rounded" placeholder="Search by National ID | البحث بالرقم القومي"  aria-label="Search" aria-describedby="search-addon"onkeyup="getdata(this.value,'id')" />
+  @*<button type="button" class="btn btn-outline-primary">search</button>*@
+</div>
+
+
+<table class="table">
+    <thead class="text-center">        
+        <th>الدليل</th>
+        <th>اخذ اللقاح</th>    
+    </thead>
+    
+    <tbody id="TableResult" class="text-center">
+    </tbody>
+</table>

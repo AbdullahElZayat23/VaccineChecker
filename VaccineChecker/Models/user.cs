@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace VaccineChecker.Models
@@ -14,7 +15,9 @@ namespace VaccineChecker.Models
         [Key]
        
         [Required]
-        [StringLength(50,MinimumLength =8)]
+        [StringLength(50,MinimumLength =8,ErrorMessage ="Length between 8 and 50 charachters")]
+        //[RegularExpression(pattern: "/[a-zA-Z0-9]+$/g", ErrorMessage ="only numbers and charachters allowed")]
+        [Remote(action: "checkusername", controller:"admin",HttpMethod ="POST",ErrorMessage ="Username already exists")]
         public string username { get; set; }
         [RegularExpression(pattern: @"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$", ErrorMessage = "Minimum eight characters, at least one letter, one number and one special character.")]
         [StringLength(50,MinimumLength =8)]
