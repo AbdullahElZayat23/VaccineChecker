@@ -22,6 +22,8 @@ namespace VaccineChecker.Controllers
 
         public IActionResult Index()
         {
+            logged = false;
+            isadmin = false;
             ViewBag.isok = true;
             return View();
         }
