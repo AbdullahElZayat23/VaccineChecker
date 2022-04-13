@@ -26,8 +26,9 @@ font-size:20px;
 margin-top:15px;
 }
 body {
-    background-color: #FFDEE9;
-    background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+    background-image:url("../images/covidbackground.jpg");
+   /* background-color: #FFDEE9;
+    background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);*/
 }
 /*#logotitle::before {
     content:url("../images/logo.jpg");

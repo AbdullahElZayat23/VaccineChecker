@@ -33,13 +33,18 @@
                          <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="contact">Contact</a>
                         </li>
-                      
-                        @if (logged && ViewData["Title"].ToString() != "Home Page")
+                        @if (ViewData["Title"]!=null && ViewData["Title"]!="")
+                        {
+                             @if (logged && ViewData["Title"].ToString() != "Home Page")
                         {
                          <li class="nav-item">
                             <a class="nav-link  btn-danger btn" asp-area="" asp-controller="Home" asp-action="logout">Log out</a>
                         </li>
                         }
+                        }
+
+                        
+                       
                                                
                     </ul>
                 </div>
