@@ -8,9 +8,7 @@ namespace VaccineChecker.Controllers
     
     public class HomeController : Controller
     {
-
        
-
         VaccinecheckerContext db;
 
         private readonly ILogger<HomeController> _logger;
@@ -32,6 +30,24 @@ namespace VaccineChecker.Controllers
             return View();
         }
 
+        public IActionResult contact()
+        {
+            return View();
+        }
+
+        public IActionResult about()
+        {
+            return View();
+        }
+
+        public IActionResult logout()
+        {
+
+            logged = false;
+            isadmin = false;
+            return RedirectToAction(actionName:"index",controllerName: "home");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -39,17 +55,21 @@ namespace VaccineChecker.Controllers
         }
 
         public IActionResult LoginCheck(user usr) {
-
-            var Curuser = db.users.Where(u=>u.username==usr.username && u.password==usr.password).ToList();
-            if (Curuser.Count > 0) {
-                logged = true;
-                username = usr.username;
-                isadmin = false;
-                if ((bool)Curuser[0].isadmin) {
-                    isadmin = true;
-                }                
-                return RedirectToAction(actionName: "Index",controllerName:"admin");
+            if (!string.IsNullOrEmpty(usr.username)) {
+                var Curuser = db.users.Where(u => u.username == usr.username && u.password == usr.password).ToList();
+                if (Curuser.Count > 0)
+                {
+                    logged = true;
+                    username = usr.username;
+                    isadmin = false;
+                    if ((bool)Curuser[0].isadmin)
+                    {
+                        isadmin = true;
+                    }
+                    return RedirectToAction(actionName: "Index", controllerName: "admin");
+                }
             }
+            
             ViewBag.isok = false;
           return  View("index");
             

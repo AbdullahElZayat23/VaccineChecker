@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VaccineChecker.Models;
+using static VaccineChecker.Models.CurrentuserData;
 
 namespace VaccineChecker.Controllers
 {
@@ -12,38 +13,53 @@ namespace VaccineChecker.Controllers
         }
         public IActionResult Index()
         {
-            return View("searchForStudent");
+            if (logged) {
+                return View("searchForStudent");
+            }
+
+            Response.StatusCode = 403;
+            return View("NotAuthorized");
+           
         }
         public  IActionResult searchStudent()
         {
-            try
-            {
-                string term = HttpContext.Request.Query["id"].ToString();
-                string type = HttpContext.Request.Query["type"].ToString();
-                List<string> data;
-                if (type == "name")
+            if (logged) {
+
+                try
                 {
-                  data = db.students.Where(p => p.name.Contains(term))
-                        .Select(s=>s.name + $":{s.vaccined}").ToList();                                      
-                }
-                else if (type == "email")
-                {
-                     data = db.students.Where(s => s.email.Contains(term))
-                          .Select(s => s.email + $":{s.vaccined}").ToList();                   
-                }
-                else {
-                     data = db.students.Where(s => s.NationalID.Contains(term))
-                           .Select(s => s.NationalID+$":{s.vaccined}").ToList();                   
-                }
-                Response.StatusCode = 200;
-                return Json(data);
+                    string term = HttpContext.Request.Query["id"].ToString();
+                    string type = HttpContext.Request.Query["type"].ToString();
+                    List<string> data;
+                    if (type == "name")
+                    {
+                        data = db.students.Where(p => p.name.Contains(term))
+                              .Select(s => s.name + $":{s.vaccined}:{s.faculty}").ToList();
+                    }
+                    else if (type == "email")
+                    {
+                        data = db.students.Where(s => s.email.Contains(term))
+                             .Select(s => s.email + $":{s.vaccined}:{s.faculty}").ToList();
+                    }
+                    else
+                    {
+                        data = db.students.Where(s => s.NationalID.Contains(term))
+                              .Select(s => s.NationalID + $":{s.vaccined}:{s.faculty}").ToList();
+                    }
+                    Response.StatusCode = 200;
+                    return Json(data);
 
 
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+
             }
-            catch (Exception )
-            {
-                return BadRequest();
-            }
+
+            Response.StatusCode = 403;
+            return View("NotAuthorized");
+           
         }
     }
 }

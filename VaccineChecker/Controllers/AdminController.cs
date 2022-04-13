@@ -35,7 +35,7 @@ namespace VaccineChecker.Controllers
             else if (logged && isadmin == false)
             {
                 //serach
-                return RedirectToAction(actionName:"index",controllerName:"search");
+                return RedirectToAction(actionName: "index", controllerName: "search");
             }
 
             //not authorized
@@ -75,7 +75,6 @@ namespace VaccineChecker.Controllers
 
         }
 
-
         public IActionResult SavestudentData(student std)
         {
 
@@ -105,12 +104,19 @@ namespace VaccineChecker.Controllers
 
         public IActionResult checkNationalID(string nationalID)
         {
-            var result = db.students.Where(u => u.NationalID == nationalID).ToList();
-            if (result.Count > 0)
+
+            if (logged && isadmin)
             {
-                return Json(false);
+                var result = db.students.Where(u => u.NationalID == nationalID).ToList();
+                if (result.Count > 0)
+                {
+                    return Json(false);
+                }
+                return Json(true);
             }
-            return Json(true);
+            Response.StatusCode = 403;
+            return View("NotAuthorized");
+
         }
 
         public IActionResult editstudent(string id)
@@ -234,21 +240,31 @@ namespace VaccineChecker.Controllers
 
         public IActionResult checkusername(string username)
         {
-            var result = db.users.Where(u => u.username == username).ToList();
 
-            if (result.Count > 0)
+            if (logged && isadmin)
             {
-                return Json(false);
+                var result = db.users.Where(u => u.username == username).ToList();
+
+                if (result.Count > 0)
+                {
+                    return Json(false);
+                }
+                return Json(true);
+
             }
-            return Json(true);
+            //not authorized
+            Response.StatusCode = 403;
+            return View("NotAuthorized");
 
         }
 
-        public IActionResult deleteuser(string id) {
+        public IActionResult deleteuser(string id)
+        {
 
-            if (logged && isadmin) {
-                var result = db.users.Where(u => u.username == username).First();                
-                return View("deleteuser",result);
+            if (logged && isadmin)
+            {
+                var result = db.users.Where(u => u.username == username).First();
+                return View("deleteuser", result);
             }
             //not authorized
             Response.StatusCode = 403;
@@ -271,8 +287,8 @@ namespace VaccineChecker.Controllers
             //not authorized
             Response.StatusCode = 403;
             return View("NotAuthorized");
-    
-        
+
+
         }
         public IActionResult edituser(string id)
         {
@@ -299,7 +315,7 @@ namespace VaccineChecker.Controllers
                 result.isadmin = usr.isadmin;
                 result.username = usr.username;
                 result.password = usr.password;
-                
+
                 db.SaveChanges();
                 isadmin = (bool)usr.isadmin;
                 return RedirectToAction(actionName: "showusers");

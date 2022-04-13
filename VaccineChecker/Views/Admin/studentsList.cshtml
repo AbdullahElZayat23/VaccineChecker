@@ -17,6 +17,9 @@
 <table class="table">
     <thead>
         <tr>
+             <th>
+                National ID
+            </th>
             <th>
                 Name
             </th>
@@ -38,19 +41,22 @@
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody >
 @foreach (var item in Model) {
         <tr>
-            <td>
+             <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
+                @Html.DisplayFor(modelItem => item.NationalID)
+            </td>
+            <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
                 @Html.DisplayFor(modelItem => item.name)
             </td>
-            <td>
+            <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
                 @Html.DisplayFor(modelItem => item.email)
             </td>
-            <td>
+            <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
                 @Html.DisplayFor(modelItem => item.faculty)
             </td>
-            <td>
+            <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
                 @Html.DisplayFor(modelItem => item.vaccined)
             </td>
             @*<td>
