@@ -60,9 +60,9 @@
                 @Html.DisplayFor(modelItem => item.personalImage)
             </td>*@
             <td>
-                <a asp-action="editstudent" asp-route-id="@item.NationalID">Edit</a> |
+                <a class="btn-info btn" asp-action="editstudent" asp-route-id="@item.NationalID">Edit</a> |
                @* <a asp-action="Details" asp-route-id="@item.NationalID">Details</a> |*@
-                <a asp-action="showdelete" asp-route-id="@item.NationalID">Delete</a>
+                <a class="btn-danger btn" asp-action="showdelete" asp-route-id="@item.NationalID">Delete</a>
             </td>
         </tr>
 }

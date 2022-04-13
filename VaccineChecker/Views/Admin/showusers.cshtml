@@ -41,8 +41,8 @@
 
 
                 <td>
-                    <a asp-action="edituser" asp-route-id="@item.username">Edit</a> |
-                    <a asp-action="deleteuser" asp-route-id="@item.username">Delete</a>
+                    <a class="btn-info btn" asp-action="edituser" asp-route-id="@item.username">Edit</a> |
+                    <a class="btn-danger btn" asp-action="deleteuser" asp-route-id="@item.username">Delete</a>
                 </td>
             </tr>
         }
