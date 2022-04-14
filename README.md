@@ -21,7 +21,7 @@ An app for checking faculty's student vaccine condition.
 
 **Client:** Bootstrap, MVC views, HTML, JS
 
-**Server:** C#, ASP.NET core 6
+**Server:** C#, ASP.NET core 6,EF core
 
 
 ## How to use
